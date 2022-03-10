@@ -57,13 +57,6 @@ else:
     cv2.destroyAllWindows()
 ```
 
-OpenSelectedCamera.py(build the map of Id with Ip one by one, at the same time you can see the cameraview)
-Please choose the ip: \\?\usb#vid_18ec&pid_3399&mi_00#6&213c80e0&1&0000#{e5323777-f976-4f5b-9b55-b94699c46e44}\global
-0:201
-1:202
-choose the number(default is 0):
-Please choose the ip: \\?\usb#vid_046d&pid_08e4&mi_00#6&203ec69b&0&0000#{e5323777-f976-4f5b-9b55-b94699c46e44}\global
-0:202
-choose the number(default is 0):
-write to cameraSetting.json--> {'201': 0, '202': 1}
 
+OpenSelectedCamera.py(build the map of Id with Ip one by one, at the same time you can see the cameraview)
+![OpenSelectedCamera](https://user-images.githubusercontent.com/28754922/157620810-680204d5-456a-4f7e-a1ed-51fbcd6cdecd.png)
