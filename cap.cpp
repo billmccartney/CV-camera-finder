@@ -27,6 +27,19 @@ void DeviceList::Clear()
     m_cDevices = 0;
 }
 
+HRESULT DeviceList::GetDevice(UINT32 index, IMFActivate **ppActivate)
+{
+    if (index >= Count())
+    {
+        return E_INVALIDARG;
+    }
+
+    *ppActivate = m_ppDevices[index];
+    (*ppActivate)->AddRef();
+
+    return S_OK;
+}
+
 HRESULT DeviceList::EnumerateDevices()
 {
     HRESULT hr = S_OK;
@@ -69,8 +82,14 @@ HRESULT DeviceList::GetDeviceName(UINT32 index, WCHAR** ppszName)
 
     HRESULT hr = S_OK;
 
-    hr = m_ppDevices[index]->GetAllocatedString(
-        MF_DEVSOURCE_ATTRIBUTE_FRIENDLY_NAME,
+    // hr = m_ppDevices[index]->GetAllocatedString(
+    //     MF_DEVSOURCE_ATTRIBUTE_FRIENDLY_NAME,
+    //     ppszName,
+    //     NULL
+    // );
+
+        hr = m_ppDevices[index]->GetAllocatedString(
+        MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_SYMBOLIC_LINK,
         ppszName,
         NULL
     );

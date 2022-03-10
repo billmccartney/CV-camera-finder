@@ -57,7 +57,7 @@ static PyMethodDef pymf_methods[] = {
 static PyModuleDef pymf_module = {
     PyModuleDef_HEAD_INIT,
     "pymf",                        // Module name to use with Python import statements
-    "MSMF tool",  // Module description
+    "MSMF tool",                    // Module description
     0,
     pymf_methods                   // Structure that defines the methods of the module
 };
