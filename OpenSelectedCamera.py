@@ -55,7 +55,6 @@ if __name__ == '__main__':
         ipList.append(str(201+i))
 
     for cv_index, device_name in enumerate(device_list):
-        # make sure you use Media Foundation
         g_thread_exit_flag = False
         cap = CaptureThread(cv_index, device_name) 
         cap.start()
