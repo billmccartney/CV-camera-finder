@@ -6,18 +6,18 @@ from Cython.Distutils import build_ext
 from Cython.Build import cythonize
 
 
-sourcefiles = ['pymf.cpp', 'cap.cpp']
+sourcefiles = ['cv_camera_finder.cpp', 'cap.cpp']
 
 ext_modules = [
 #cythonize("pymf.cpp")
 # V2 Beta
-Extension("pymf", sourcefiles,
+Extension("cv_camera_finder", sourcefiles,
 include_dirs=["capture"],
 libraries=["ole32"], #error LNK2001: unresolved external symbol __imp_CoTaskMemFree
 language="c++"),
 ]
 setup(
-    name = "pymf",
+    name = "cv_camera_finder",
     version = "1.0",
     description = "This adds device information to MSMF opencv device backend.",
     cmdclass = {'build_ext': build_ext},
