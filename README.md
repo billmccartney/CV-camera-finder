@@ -1,5 +1,23 @@
 # CV-camera-finder
 
+This allows listing the device IDs from OpenCV MSMF videocapture backend. 
+
+Originally from [@pvys](https://github.com/pvys/) and then modernized by [@duguguang](https://github.com/duguguang/). I only renamed it and set it up to install via requirements.txt.
+
+# Installation
+
+Add the following to your requirements.txt:
+```
+cv_camera_finder @ git+https://github.com/billmccartney/CV-camera-finder.git
+```
+Or run the following commands in this folder after checking it out
+```
+python setup.py build
+python setup.py install
+```
+
+# Original Docs
+
 A simple function to find a connected camera list with media foundation. This is just a modified code of a sample found in https://github.com/Microsoft/Windows-classic-samples/tree/master/Samples/Win7Samples/multimedia/mediafoundation/MFCaptureToFile to use in python.
 
 If you are looking for a function with Directshow, see https://www.codeproject.com/Articles/1274094/Capturing-Images-from-Camera-using-Python-and-Dire.
@@ -17,7 +35,7 @@ Tested Env: windows10, python3.9.6
 
 simple example
 ``` python
-from pymf import get_MF_devices
+from cv_camera_finder import get_MF_devices
 device_list = get_MF_devices()
 for i, device_name in enumerate(device_list):
     print(f"opencv_index: {i}, device_name: {device_name}")
@@ -27,7 +45,7 @@ for i, device_name in enumerate(device_list):
 
 simple example with opencv
 ``` python
-from pymf import get_MF_devices
+from cv_camera_finder import get_MF_devices
 import cv2
 
 device_list = get_MF_devices()
