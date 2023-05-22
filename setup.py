@@ -17,6 +17,9 @@ libraries=["ole32"], #error LNK2001: unresolved external symbol __imp_CoTaskMemF
 language="c++"),
 ]
 setup(
+    name = "pymf",
+    version = "1.0",
+    description = "This adds device information to MSMF opencv device backend.",
     cmdclass = {'build_ext': build_ext},
     ext_modules= cythonize(
             ext_modules,
