@@ -6,7 +6,7 @@
 
 using namespace std;
 
-vector< string > _get_devices() {
+vector< string > _get_devices(bool friendly) {
     vector< string > result;
     DeviceList  g_devices;
     HRESULT hr = S_OK;
@@ -22,9 +22,11 @@ vector< string > _get_devices() {
 
     for (UINT32 iDevice = 0; iDevice < g_devices.Count(); iDevice++)
     {
-
-        hr = g_devices.GetDeviceName(iDevice, &szFriendlyName);
-
+        if(friendly){
+            hr = g_devices.GetFriendlyDeviceName(iDevice, &szFriendlyName);
+		}else{
+            hr = g_devices.GetDeviceName(iDevice, &szFriendlyName);
+		}
         if (FAILED(hr)) { return result; }
         wstring ws(szFriendlyName);
         string szFriendlyNameStr(ws.begin(), ws.end());
@@ -36,7 +38,17 @@ vector< string > _get_devices() {
 }
 
 PyObject* get_MF_devices(PyObject* self, PyObject* args) {
-    vector< string > devices = _get_devices();
+    vector< string > devices = _get_devices(false);
+    PyObject* result = PyList_New(devices.size());
+    for (int i = 0; i < devices.size(); ++i) {
+        PyObject* pytmp = Py_BuildValue("s", devices[i].c_str());
+        PyList_SetItem(result, i, pytmp);
+    }
+    return result;
+}
+
+PyObject* get_MF_friendly_devices(PyObject* self, PyObject* args) {
+    vector< string > devices = _get_devices(false);
     PyObject* result = PyList_New(devices.size());
     for (int i = 0; i < devices.size(); ++i) {
         PyObject* pytmp = Py_BuildValue("s", devices[i].c_str());
@@ -49,6 +61,7 @@ static PyMethodDef cv_camera_finder_methods[] = {
     // The first property is the name exposed to Python, fast_tanh, the second is the C++
     // function name that contains the implementation.
     { "get_MF_devices", (PyCFunction)get_MF_devices, METH_NOARGS, nullptr },
+    { "get_MF_friendly_devices", (PyCFunction)get_MF_friendly_devices, METH_NOARGS, nullptr },
 
     // Terminate the array with an object containing nulls.
     { nullptr, nullptr, 0, nullptr }

@@ -96,3 +96,21 @@ HRESULT DeviceList::GetDeviceName(UINT32 index, WCHAR** ppszName)
 
     return hr;
 }
+
+HRESULT DeviceList::GetDeviceFriendlyName(UINT32 index, WCHAR** ppszName)
+{
+    if (index >= Count())
+    {
+        return E_INVALIDARG;
+    }
+
+    HRESULT hr = S_OK;
+
+    hr = m_ppDevices[index]->GetAllocatedString(
+        MF_DEVSOURCE_ATTRIBUTE_FRIENDLY_NAME,
+        ppszName,
+        NULL
+    );
+
+    return hr;
+}
