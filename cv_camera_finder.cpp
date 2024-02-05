@@ -23,7 +23,7 @@ vector< string > _get_devices(bool friendly) {
     for (UINT32 iDevice = 0; iDevice < g_devices.Count(); iDevice++)
     {
         if(friendly){
-            hr = g_devices.GetFriendlyDeviceName(iDevice, &szFriendlyName);
+            hr = g_devices.GetDeviceFriendlyName(iDevice, &szFriendlyName);
 		}else{
             hr = g_devices.GetDeviceName(iDevice, &szFriendlyName);
 		}
