@@ -1,12 +1,12 @@
-__author__ = 'Lika'
-import setuputils
-from distutils.core import setup
-from distutils.extension import Extension
+from setuptools import setup, Extension
 from Cython.Distutils import build_ext
 from Cython.Build import cythonize
 
 
 sourcefiles = ['cv_camera_finder.cpp', 'cap.cpp']
+#setup(
+#        name="cv_camera_finder",
+#        ext_modules=cythonize(
 
 ext_modules = [
 #cythonize("pymf.cpp")
@@ -18,10 +18,12 @@ language="c++"),
 ]
 setup(
     name = "cv_camera_finder",
-    version = "1.0",
+    version = "1.1",
     description = "This adds device information to MSMF opencv device backend.",
     cmdclass = {'build_ext': build_ext},
     ext_modules= cythonize(
             ext_modules,
             compiler_directives={'language_level' : "3"}),
 )
+
+
