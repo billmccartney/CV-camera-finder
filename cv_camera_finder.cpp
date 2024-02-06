@@ -48,7 +48,7 @@ PyObject* get_MF_devices(PyObject* self, PyObject* args) {
 }
 
 PyObject* get_MF_friendly_devices(PyObject* self, PyObject* args) {
-    vector< string > devices = _get_devices(false);
+    vector< string > devices = _get_devices(true);
     PyObject* result = PyList_New(devices.size());
     for (int i = 0; i < devices.size(); ++i) {
         PyObject* pytmp = Py_BuildValue("s", devices[i].c_str());
